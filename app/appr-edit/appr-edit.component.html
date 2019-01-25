@@ -1,0 +1,151 @@
+<form *ngIf="jobReceived" #f="ngForm" (ngSubmit)="submit(f.value)">
+  <input hidden [(ngModel)]="job.reqId" name="reqId" type="text" class="form-control">
+  <div class="form-group">
+    <label for="jobreqid"></label>
+    <input hidden [(ngModel)]="job.jobreqid" type="text" name="jobreqid" id="jobreqid" class="form-control">
+    <input disabled [value]="job.jobreqid" type="text" name="jobreqid" id="jobreqid" class="form-control">
+  </div>
+  <div class="form-group">
+      <label for="requestorId">Requestor</label>
+      <input hidden [(ngModel)]="job.requestorId" #reqId="ngModel" name="requestorId" type="text" id="requestorId" class="form-control"/>
+      <input disabled type="text" value="{{ reqId?.model.firstname | uppercase}}" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="reqDept">Department</label>
+    <input [(ngModel)]="job.reqDept" #reqDept="ngModel" hidden type="text" id="reqDept" name="reqDept" class="form-control">
+    <input disabled type="text" [value]="reqDept.value" class="form-control">
+  </div>
+ <div class="form-group">
+  <label for="reqDate">Date</label>
+  <input [(ngModel)]="job.reqDate" #reqDate="ngModel" name="reqDate" hidden type="date" id="reqDate" class="form-control">
+  <input type="text" class="form-control" disabled [value]="reqDate.value">
+</div>
+<div class="form-group">
+  <label for="posTitle">Position</label>
+  <input [(ngModel)]="job.posTitle" #posTitle="ngModel" hidden type="text" name="posTitle" id="posTitle" class="form-control">
+  <input type="text" class="form-control" disabled [value]="posTitle.value">
+</div>
+<div class="form-group">
+    <label for="jobDesc">Job Description</label>
+    <input [(ngModel)]="job.jobDesc" #jobDesc="ngModel" hidden type="text" name="jobDesc" id="jobDesc" class="form-control">
+    <input disabled [value]="jobDesc.value" type="text" class="form-control">
+</div>
+<div class="form-group">
+  <label for="jobResp">Responsibilities</label>
+  <input hidden [(ngModel)]="job.jobResp" #jobResp="ngModel" type="text" name="jobResp" id="jobResp" class="form-control">
+  <input disabled [value]="jobResp.value" type="text" class="form-control">
+</div>
+<div class="form-group">
+    <label for="skills">Skills</label>
+    <input [(ngModel)]="job.skills" #skills="ngModel" hidden type="text" name="skills" id="skills" class="form-control">
+    <input disabled [value]="skills.value" type="text" class="form-control">
+</div>
+<div class="form-group">
+  <label for="reqEdu">Education</label>
+  <input hidden [(ngModel)]="job.reqEdu" #reqEdu="ngModel" type="text" name="reqEdu" id="reqEdu" class="form-control">
+  <input disabled [value]="reqEdu.value" type="text" class="form-control">
+</div>
+<div class="form-group">
+  <label for="jobExp">Experience</label>
+  <input hidden [(ngModel)]="job.jobExp" #jobExp="ngModel" type="text" name="jobExp" id="jobExp" class="form-control">
+  <input disabled [value]="jobExp.value" type="text" class="form-control">
+</div>
+<div class="form-group">
+  <label for="comments">Comments</label>
+  <input hidden [(ngModel)]="job.comments" #comments="ngModel" type="text" name="comments" id="comments" class="form-control">
+  <input disabled [value]="comments.value" type="text" class="form-control">
+</div>
+ <div class="form-group">
+  <label for="vacancies">Vacancies</label>
+  <input hidden [(ngModel)]="job.vacancies" #vacancies="ngModel" name="vacancies" id="vacancies" class="form-control">
+  <input disabled [value]="vacancies.value" type="text" class="form-control">
+</div>
+
+
+<div class="form-group">
+  <label for="mgrAuthId">Manager Approver</label>
+  <input hidden [(ngModel)]="job.mgrAuthId" #mgrAppr="ngModel" name="mgrAuthId" id="mgrAuthId" class="form-control">
+  <input disabled [value]="mgrAppr.model.firstname" type="text" class="form-control">
+</div>
+<div *ngIf="userEqMgr()" class="form-group">
+  <label for="mastatus">Approval Status</label>
+  <select [(ngModel)]="job.mastatus" type="text" id="mastatus" name="mastatus" class="form-control">
+    <option value=""></option>
+    <option value="Approved">Approved</option>
+    <option value="Rejected">Rejected</option>
+  </select>
+</div>
+<div *ngIf="!userEqMgr()" class="form-group">
+  <label for="mastatus">Manager Approval Status</label>
+  <input hidden [(ngModel)]="job.mastatus" type="text" id="mastatus" name="mastatus" class="form-control">
+  <input disabled [value]="job.mastatus" type="text" id="mastatus" name="mastatus" class="form-control">
+</div>
+<div class="form-group">
+  <label for="mgrComm">Manager Comments</label>
+  <input *ngIf="!userEqMgr()" hidden [(ngModel)]="job.mgrComm" #mgrComm="ngModel" type="text" name="mgrComm" id="mgrComm" class="form-control">
+  <input *ngIf="!userEqMgr()" disabled [value]="job.mgrComm" type="text" class="form-control">
+  <input *ngIf="userEqMgr()" [(ngModel)]="job.mgrComm" type="text" id="mgrComm" name="mgrComm" class="form-control">
+</div>
+
+
+
+<div class="form-group">
+    <label for="finAuthId">Finance Approver</label>
+    <input hidden [(ngModel)]="job.finAuthId" #finAppr="ngModel" name="finAuthId" id="finAuthId" class="form-control">
+    <input disabled [value]="finAppr.model.firstname" type="text" class="form-control">
+</div>
+<div *ngIf="userEqFin()" class="form-group">
+    <label for="finstatus">Finance Approval Status</label>
+    <select [(ngModel)]="job.finstatus" type="text" id="finstatus" name="finstatus" class="form-control">
+      <option value=""></option>
+      <option value="Approved">Approved</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+</div>
+<div *ngIf="!userEqFin()" class="form-group">
+  <label for="finstatus">Finance Approver Status</label>
+  <input hidden [(ngModel)]="job.finstatus" #finstat="ngModel" type="text" name="finstatus" id="finstatus" class="form-control">
+  <input disabled [value]="finstat.value" type="text" class="form-control">
+</div>
+<div class="form-group">
+  <label for="finComm">Finance Comments</label>
+  <input *ngIf="!userEqFin()" hidden [(ngModel)]="job.finComm" #fin="ngModel"  type="text" name="finComm" id="finComm" class="form-control">
+  <input *ngIf="!userEqFin()" disabled [value]="job.finComm"  type="text" class="form-control">
+  <input *ngIf="userEqFin()" [(ngModel)]="job.finComm" type="text" id="finComm" name="finComm" class="form-control">
+</div>
+
+<div class="form-group">
+    <label for="mgmAuthId">Management Approver</label>
+    <input hidden [(ngModel)]="job.mgmAuthId" #mgmAppr="ngModel" name="mgmAuthId" id="mgmAuthId" class="form-control">
+    <input disabled [value]="mgmAppr.model.firstname" type="text" class="form-control">
+</div>
+<div *ngIf="userEqMgm()" class="form-group">
+    <label for="mgmstatus">Management Approval Status</label>
+    <select [(ngModel)]="job.mgmstatus" type="text" id="mgmstatus" name="mgmstatus" class="form-control">
+      <option value=""></option>
+      <option value="Approved">Approved</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+</div>
+<div *ngIf="!userEqMgm()" class="form-group">
+  <label for="mgmstatus">Management Approver Status</label>
+  <input hidden [(ngModel)]="job.mgmstatus" #mgmstat="ngModel" type="text" name="mgmstatus" id="mgmstatus" class="form-control">
+  <input disabled [value]="mgmstat.value" type="text" class="form-control">
+</div>
+<div class="form-group">
+  <label for="mgmComm">Management Comments</label>
+  <input *ngIf="!userEqMgm()" hidden [(ngModel)]="job.mgmComm" #mgm="ngModel"  type="text" name="mgmComm" id="mgmComm" class="form-control">
+  <input *ngIf="!userEqMgm()" disabled [value]="job.mgmComm"  type="text" class="form-control">
+  <input *ngIf="userEqMgm()" [(ngModel)]="job.mgmComm" type="text" id="mgmComm" name="mgmComm" class="form-control">
+</div>
+
+<div class="form-group">
+  <label for="empType">Employment Type</label>
+  <input hidden [(ngModel)]="job.empType" name="empType" id="empType" class="form-control">
+  <input disabled [value]="job.empType" name="empType" id="empType" class="form-control">
+</div>
+  <input hidden [(ngModel)]="job.jobstatus" type="text" name="jobstatus" id="jobstatus" class="form-control">
+<button *ngIf="userEqMgr() || userEqFin() || userEqMgm()" class="btn btn-success btn-md">Submit</button>
+<p *ngIf="jobReceived">{{ f.value | json }}</p>
+</form>
+

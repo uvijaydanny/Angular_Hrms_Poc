@@ -1,0 +1,213 @@
+<h3>Candidate Form</h3>
+<form #f="ngForm" (ngSubmit)="submit(f.value)">
+    <input type="text" name="jobreqid" hidden [(ngModel)]="job">
+    <table>
+      <tr>
+        <td> 
+            <mat-form-field>
+                <input  matInput [(ngModel)]="firstName" name="firstName" #fname="ngModel" required 
+                type="text" placeholder="First name" autocomplete="off">
+                <mat-error>
+                <div *ngIf="fname.touched && fname.invalid">
+                  <div *ngIf="fname.errors.required">First name should be entered</div>
+                </div>
+                </mat-error>
+              </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field>
+                <input matInput [(ngModel)]="lastName" #lname="ngModel" required autocomplete="off"
+                type="text" name="lastName" id="lastName" placeholder="Last name">
+                <mat-error>
+                    <div *ngIf="lname.touched && lname.invalid">
+                      <div *ngIf="lname.errors.required">Last name should be entered</div>
+                    </div>
+                </mat-error>
+                </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <mat-form-field>
+                <input matInput [(ngModel)]="emailId" #emailid="ngModel" type="email" required
+                name="emailId" id="emailId" placeholder="Email Id">
+                <mat-error>
+                    <div *ngIf="emailid.touched && emailid.invalid">
+                      <div *ngIf="emailid.errors.required">Please enter an email id</div>
+                    </div>
+                </mat-error>
+              </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field>
+            <input matInput [(ngModel)]="telephone" #tel="ngModel" required  
+            type="number" id="telephone" name="telephone" placeholder="Mobile No..">
+            <mat-error>
+                <div *ngIf="tel.touched && tel.invalid">
+                  <div *ngIf="tel.errors.required">Please enter a valid phone number</div>
+                </div>
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field>
+                    <mat-select required placeholder="Resume Attached" [(ngModel)]="canResume" name="canResume">
+                      <mat-option *ngFor="let yesno of yesnoobj" [value]="yesno.id">
+                        {{yesno.name}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error>
+                        Select an option
+                    </mat-error>
+            </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+          <td>
+              <mat-form-field>
+                      <mat-select required placeholder="On Hold" [(ngModel)]="onHold" name="onHold">
+                        <mat-option *ngFor="let i of int_status" [value]="i.name">
+                          {{i.name}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error>
+                          Select an option
+                      </mat-error>
+              </mat-form-field>
+          </td>
+          <td>
+              <mat-form-field>
+                      <mat-select required placeholder="Telephone Round" [(ngModel)]="telStatus" name="telStatus">
+                          <mat-option *ngFor="let i of int_status" [value]="i.name">
+                              {{i.name}}
+                          </mat-option>
+                      </mat-select>
+                      <mat-error>
+                          Select an option
+                      </mat-error>
+              </mat-form-field>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <mat-form-field>
+                      <mat-select required placeholder="Technical I" [(ngModel)]="tech1Status" name="tech1Status">
+                        <mat-option *ngFor="let i of int_status" [value]="i.name">
+                          {{i.name}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error>
+                          Select an option
+                      </mat-error>
+              </mat-form-field>
+          </td>
+          <td>
+              <mat-form-field>
+                      <mat-select required placeholder="Technical II" [(ngModel)]="tech2Status" name="tech2Status">
+                          <mat-option *ngFor="let i of int_status" [value]="i.name">
+                              {{i.name}}
+                          </mat-option>
+                      </mat-select>
+                      <mat-error>
+                          Select an option
+                      </mat-error>
+              </mat-form-field>
+          </td>
+      </tr>
+    
+      <tr>
+          <td>
+              <mat-form-field>
+                      <mat-select required placeholder="Managerial" [(ngModel)]="mgrStatus" name="mgrStatus">
+                        <mat-option *ngFor="let i of int_status" [value]="i.name">
+                          {{i.name}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error>
+                          Select an option
+                      </mat-error>
+              </mat-form-field>
+          </td>
+          <td>
+              <mat-form-field>
+                      <mat-select required placeholder="HR Status" [(ngModel)]="hrStatus" name="hrStatus">
+                          <mat-option *ngFor="let i of int_status" [value]="i.name">
+                              {{i.name}}
+                          </mat-option>
+                      </mat-select>
+                      <mat-error>
+                          Select an option
+                      </mat-error>
+              </mat-form-field>
+          </td>
+      </tr>
+    
+      <tr>
+          <td>
+              <mat-form-field>
+                      <mat-select required placeholder="Offer Released" [(ngModel)]="ofrRls" name="ofrRls">
+                        <mat-option *ngFor="let i of int_status" [value]="i.name">
+                          {{i.name}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error>
+                          Select an option
+                      </mat-error>
+              </mat-form-field>
+          </td>
+          <td>
+              <mat-form-field>
+                      <mat-select required placeholder="Offer Accepted" [(ngModel)]="ofrAccept" name="ofrAccept">
+                          <mat-option *ngFor="let i of int_status" [value]="i.name">
+                              {{i.name}}
+                          </mat-option>
+                      </mat-select>
+                      <mat-error>
+                          Select an option
+                      </mat-error>
+              </mat-form-field>
+          </td>
+      </tr>
+    
+      <tr>
+          <td>
+              <mat-form-field>
+                      <mat-select required placeholder="Background Verification" [(ngModel)]="bckgVerify" name="bckgVerify">
+                        <mat-option *ngFor="let i of int_status" [value]="i.name">
+                          {{i.name}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error>
+                          Select an option
+                      </mat-error>
+              </mat-form-field>
+          </td>
+          <td>
+              <mat-form-field>
+                      <mat-select required placeholder="Joined Organization" [(ngModel)]="joinedOrg" name="joinedOrg">
+                          <mat-option *ngFor="let i of int_status" [value]="i.name">
+                              {{i.name}}
+                          </mat-option>
+                      </mat-select>
+                      <mat-error>
+                          Select an option
+                      </mat-error>
+              </mat-form-field>
+          </td>
+      </tr>
+      <tr>
+        <td>
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Joining Date"
+                [(ngModel)]="joinDate" name="joinDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>          
+        </td>
+      </tr>
+    </table>
+    <button class="btn btn-primary btn-lg">Submit</button>
+    </form>
+    {{f.value | json}}

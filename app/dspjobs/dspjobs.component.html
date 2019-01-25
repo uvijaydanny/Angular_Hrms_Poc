@@ -1,0 +1,118 @@
+<mat-form-field>
+<input matInput placeholder="Filter by Job Name" [(ngModel)]="jobname" #jname="ngModel" type="text" name="jobname" (keyup)="filtertable(jname.value)">
+</mat-form-field>
+<data-table
+[items]="items"
+[itemCount]="itemCount"
+(reload)="reloadItems($event)"
+> 
+<data-table-column
+[property]="'jobreqid'"
+[header]="'Job Request Id'"
+[sortable]="true"
+[resizable]="true"
+>
+</data-table-column>
+
+<data-table-column
+[property]="'posTitle'"
+[header]="'Title'"
+[sortable]="true"
+[resizable]="true"
+>
+</data-table-column>
+
+<data-table-column
+[property]="'requestorId'"
+[header]="'Requestor'"
+[sortable]="true"
+[resizable]="true"
+>
+<ng-template #dataTableCell let-item="item">
+  {{ item.requestorId.firstname }}
+</ng-template>
+</data-table-column>
+<data-table-column
+[property]="'reqDate'"
+[header]="'Requested Date'"
+[sortable]="true"
+>
+</data-table-column>
+<data-table-column
+[property]="'skills'"
+[header]="'Skills'"
+[sortable]="true"
+>
+</data-table-column>
+<data-table-column
+[property]="'jobExp'"
+[header]="'Experience'"
+[sortable]="true"
+>
+</data-table-column>
+<data-table-column
+[property]="'reqDate'"
+[header]="'Requested Date'"
+[sortable]="true"
+>
+</data-table-column>
+<data-table-column
+[property]="'vacancies'"
+[header]="'Vacancies'"
+[sortable]="true"
+>
+</data-table-column>
+<data-table-column
+[property]="'mgrAuthId'"
+[header]="'Manager'"
+[sortable]="true"
+[resizable]="true"
+>
+<ng-template #dataTableCell let-item="item">
+  {{ item.mgrAuthId.username }}
+</ng-template>
+</data-table-column>
+<data-table-column
+[property]="'reqId'"
+>
+<ng-template #dataTableCell let-item="item">
+    <a *ngIf="item.jobstatus !== 'Approved'" [routerLink]="['/editjob',item.reqId]">Edit</a>
+    <a *ngIf="item.jobstatus === 'Approved'" [routerLink]="['/addcand',item.reqId]">Candidates</a>
+</ng-template>
+</data-table-column>
+</data-table>
+
+<!-- <div style="overflow-x:scroll;">
+<table class="table">
+  <tr>
+    <th>Job RequestId</th><th>Requested By</th><th>For Department</th><th>Date Requested</th>
+    <th>Title</th><th>Description</th><th>Responsibilities</th><th>Skills</th><th>Education</th>
+    <th>Experience</th><th>Comments</th><th>Vacancies</th>
+    <th>Manager Approver</th><th>Approval Status</th>
+    <th>Finance Approver</th><th>Approval Status</th>
+    <th>Management Approver</th><th>Approval Status</th>
+    <th>Type(P/C)</th>
+  </tr>
+  <tr *ngFor="let j of jobs">
+    <td>{{j.jobreqid}}</td>
+    <td>{{j.requestorId.username}}</td>
+    <td>{{j.reqDept}}</td>
+    <td>{{j.reqDate}}</td>
+    <td>{{j.posTitle}}</td>
+    <td>{{j.jobDesc}}</td>
+    <td>{{j.jobResp}}</td>
+    <td>{{j.skills}}</td>
+    <td>{{j.reqEdu}}</td>
+    <td>{{j.jobExp}}</td>
+    <td>{{j.comments}}</td>
+    <td>{{j.vacancies}}</td>
+    <td>{{j.mgrAuthId.username}}</td>
+    <td>{{j.mastatus}}</td>
+    <td>{{j.finAuthId.username}}</td>
+    <td>{{j.finstatus}}</td>
+    <td>{{j.mgmAuthId.username}}</td>
+    <td>{{j.mgmstatus}}</td>
+    <td>{{j.empType}}</td>
+  </tr>
+</table>
+</div> -->

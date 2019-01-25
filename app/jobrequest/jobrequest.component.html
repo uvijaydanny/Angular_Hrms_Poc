@@ -1,0 +1,84 @@
+<form #f="ngForm" (ngSubmit)="submit(f.value)">
+    <div class="form-group">
+        <label for="requestorId">Requestor</label>
+        <select ngModel name="requestorId" id="requestorId" class="form-control">
+          <option value=""></option>
+          <option *ngFor="let a of authUsers" [ngValue]="a">Name:{{ a.firstname }} </option>
+        </select>
+      </div>
+  <div class="form-group">
+    <label for="reqDept">Department</label>
+    <select ngModel #reqDept name="reqDept" id="reqDept" class="form-control">
+      <option value="IT">IT</option>
+      <option value="IT">IT-CS</option>
+      <option value="IT">HR</option>
+      <option value="IT">ADMIN</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="reqDate">Date</label>
+    <input ngModel name="reqDate" type="date" id="reqDate" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="posTitle">Position</label>
+    <input ngModel type="text" name="posTitle" id="posTitle" class="form-control">
+  </div>
+  <div class="form-group">
+      <label for="jobDesc">Job Description</label>
+      <input ngModel type="text" name="jobDesc" id="jobDesc" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="jobResp">Responsibilities</label>
+    <input ngModel type="text" name="jobResp" id="jobResp" class="form-control">
+</div>
+<div class="form-group">
+      <label for="skills">Skills</label>
+      <input ngModel type="text" name="skills" id="skills" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="reqEdu">Education</label>
+    <input ngModel type="text" name="reqEdu" id="reqEdu" class="form-control">
+</div>
+<div class="form-group">
+  <label for="jobExp">Experience</label>
+  <input ngModel type="text" name="jobExp" id="jobExp" class="form-control">
+</div>
+<div class="form-group">
+  <label for="comments">Comments</label>
+  <input ngModel type="text" name="comments" id="comments" class="form-control">
+</div>
+<div class="form-group">
+  <label for="vacancies">Vacancies</label>
+  <select ngModel name="vacancies" id="vacancies" class="form-control">
+    <option *ngFor="let item of arrayV(10); let i = index;" [value]="i">{{ i }}</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="mgrAuthId">Manager Approver</label>
+  <select ngModel name="mgrAuthId" id="mgrAuthId" class="form-control">
+    <option value=""></option>
+    <option *ngFor="let a of authUsers" [ngValue]="a">{{ a.firstname }}</option>
+  </select>
+</div>
+<div class="form-group">
+    <label for="finAuthId">Finance Approver</label>
+    <select ngModel name="finAuthId" id="finAuthId" class="form-control">
+      <option value=""></option>
+      <option *ngFor="let a of authUsers" [ngValue]="a">{{ a.firstname }}</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="mgmAuthId">Management Approver</label>
+    <select ngModel name="mgmAuthId" id="mgmAuthId" class="form-control">
+      <option value=""></option>
+      <option *ngFor="let a of authUsers" [ngValue]="a">{{ a.firstname }}</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="empType">Employment Type</label>
+    <select ngModel name="empType" id="empType" class="form-control">
+      <option *ngFor="let et of empTypes" [value]="et.id">{{ et.name }}</option>
+    </select>
+</div>
+<button class="btn btn-success btn-md">Submit</button>
+</form>

@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <a class="navbar-brand" routerLink="">Recruit</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" *ngIf="authService.isLogged()" routerLinkActive="active  current">
+          <a class="nav-link" routerLink="/jobs">Display Jobs</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isLogged()" routerLinkActive="active  current">
+            <a class="nav-link" routerLink="/reqjob">Request Job</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isLogged()" routerLinkActive="active  current">
+          <a class="nav-link" routerLink="/candidates">Candidates</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isLogged()" routerLinkActive="active  current">
+          <a class="nav-link" routerLink="/interviews">Interviews</a>
+        </li>
+      </ul>
+        <a *ngIf="!authService.isLogged()" (click)="openDialog()" class="btn btn-outline-success my-2 my-sm-0" routerLinkActive="active current">Login</a>
+        <span *ngIf="authService.isLogged()" style="padding-right:5px;">{{ authService.currentUser.sub | titlecase }}</span>
+        <a *ngIf="authService.isLogged()" (click)="authService.logout();" class="btn btn-outline-success my-2 my-sm-0" routerLinkActive="active current">Logout</a>
+    </div>
+  </nav>

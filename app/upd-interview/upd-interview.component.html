@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Interview Feedback</h2>
+<mat-dialog-content>
+ <input type="text" hidden [formControl]="candidateid">
+ <mat-form-field>
+    <input matInput placeholder="Candidate Name" type="text" [formControl]="candidateName" readonly>
+ </mat-form-field>
+ <mat-form-field>
+    <input type="text" [formControl]="jobreqid" matInput placeholder="Job Request Id" readonly>
+ </mat-form-field>
+ <mat-form-field>
+    <input type="text" [formControl]="interviewType" matInput placeholder="Interview Round" readonly>
+ </mat-form-field>
+  <mat-form-field>
+    <textarea matInput type="text" [formControl]="intComments" matInput placeholder="Comments" required></textarea>
+  </mat-form-field>
+  <mat-form-field>
+      <mat-select placeholder="Rating" [formControl]="intRating" matInput>
+        <mat-option *ngFor="let r of [0,1,2,3,4,5]" [value]="r">{{ r }}</mat-option>
+      </mat-select>
+   </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-button mat-dialog-close (click)="submit()">Yes</button>
+</mat-dialog-actions>

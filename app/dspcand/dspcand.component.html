@@ -1,0 +1,65 @@
+<mat-form-field>
+  <input  matInput [(ngModel)]="fName" name="fName" #fn="ngModel" 
+  type="text" placeholder="Filter by first name" autocomplete="off" (keyup)="filtertable(fn.value)">
+</mat-form-field>
+<data-table
+[items]="items"
+[itemCount]="itemCount"
+(reload)="reloadItems($event)"
+>
+<data-table-column
+[property]="'candidateId'"
+[header]="'Candidate Id'"
+[sortable]="true"
+[resizable]="true"
+>
+</data-table-column>
+<data-table-column
+[property]="'firstName'"
+[header]="'First Name'"
+[sortable]="true"
+>
+</data-table-column>
+<data-table-column
+[property]="'lastName'"
+[header]="'Last Name'"
+[sortable]="true"
+>
+</data-table-column>
+<data-table-column
+[property]="'jobreqid'"
+[header]="'Job Id'"
+[sortable]="true"
+>
+<ng-template #dataTableCell let-item="item">
+  {{ item.jobreqid.jobreqid }}
+</ng-template>
+</data-table-column>
+<data-table-column
+[property]="'emailId'"
+[header]="'Email Id'"
+[sortable]="true"
+>
+</data-table-column>
+<data-table-column
+[property]="'telephone'"
+[header]="'Contact'"
+[sortable]="true"
+>
+</data-table-column>
+<data-table-column
+[property]="'candidateId'"
+>
+<ng-template #dataTableCell let-item="item">
+  <a (click)="openDialog(item.candidateId)">Add Panel </a>
+</ng-template>
+</data-table-column>
+<data-table-column
+  [property]="'address'"
+  [header]="'Address'"
+>
+<ng-template #dataTableCell let-item="item">
+  <a (click)="dspAddress(item.candidateId)">Check Address</a>
+</ng-template>
+</data-table-column>
+</data-table>

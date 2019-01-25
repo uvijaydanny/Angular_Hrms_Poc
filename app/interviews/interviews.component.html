@@ -1,0 +1,68 @@
+<mat-form-field>
+  <input matInput type="text" [formControl]="filter" placeholder="Filter by ....">
+</mat-form-field>
+
+<data-table
+[items]="items"
+[itemCount]="itemCount"
+(reload)="reloadItems($event)"
+[expandableRows]="true"
+>
+<ng-template #dataTableExpand let-item="item">
+  <div style="padding: 5px; color: gray"> {{ item.intComments }} </div>
+</ng-template>
+<data-table-column
+[property]="'candidateName'"
+[sortable]="true"
+[header]="'Name'"
+>
+<ng-template #dataTableCell let-item="item">
+  {{ item.candidateName }}
+</ng-template>
+</data-table-column>
+
+<data-table-column
+[property]="'jobreqid'"
+[sortable]="true"
+[header]="'Job Request Id'"
+>
+<ng-template #dataTableCell let-item="item">
+  {{ item.jobreqid }}
+</ng-template>
+</data-table-column>
+
+  <data-table-column
+    [property]="'interviewType'"
+    [sortable]="true"
+    [header]="'Interview Type'"
+  >
+  <ng-template #dataTableCell let-item="item">
+    {{ item.interviewType }}
+  </ng-template>
+  </data-table-column>
+  <data-table-column
+    [property]="'intRating'"
+    [sortable]="true"
+    [header]="'Interview Rating'"
+  >
+  <ng-template #dataTableCell let-item="item">
+    {{ item.intRating }}
+  </ng-template>
+  </data-table-column>
+  <data-table-column
+    [property]="'intStatus'"
+    [sortable]="true"
+    [header]="'Interview Status'"
+  >
+  <ng-template #dataTableCell let-item="item">
+    {{ item.intStatus }}
+  </ng-template>
+  </data-table-column>
+  <data-table-column
+    [property]="'dialog'"
+  >
+  <ng-template #dataTableCell let-item="item">
+    <button (click)="openDialog(item)">Edit</button>
+  </ng-template>
+  </data-table-column>
+</data-table>

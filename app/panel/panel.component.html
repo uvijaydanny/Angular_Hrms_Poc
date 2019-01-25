@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>Update Interview Panel</h2>
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <input type="text" hidden formControlName="tableid">
+    <input formControlName="candidate" hidden type="text">
+    <h6>Candidate Name</h6>
+    <p>{{ candidate.firstName | uppercase }} {{ candidate.lastName | uppercase }}</p>
+    <mat-form-field>
+    <mat-select (change)="addtelPanel(s)" #s [formControl]="tel" placeholder="Telephonic Panel">
+      <mat-option *ngFor="let u of authUsers" [value]="u">{{ u.username }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="tel.hasError('required')">
+        <p>Please select Telephonic Round Panel</p>
+    </mat-error>
+    <mat-hint>{{tel?.value.email}}</mat-hint>
+    </mat-form-field><br>
+    
+    <mat-form-field>
+    <mat-select (change)="addtech1Panel(t1)" #t1 [formControl]="tech1" placeholder="Technical-I Panel">
+      <mat-option *ngFor="let u of authUsers" [value]="u">{{ u.username }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="tech1.hasError('required')">
+      <p>Please select Technical 1 Round Panel</p>
+    </mat-error> 
+    <mat-hint>{{tech1.value?.email}}</mat-hint>
+    </mat-form-field><br>
+
+    <mat-form-field>
+      <mat-select (change)="addtech2Panel(t2)" #t2 [formControl]="tech2" placeholder="Technical-II Panel">
+        <mat-option *ngFor="let u of authUsers" [value]="u">{{ u.username }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="tech2.hasError('required')">
+        <p>Please select Technical 2 Round Panel</p>
+      </mat-error>
+      <mat-hint>{{tech2.value?.email}}</mat-hint>
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <mat-select (change)="addmgrPanel(mgrT)" #mgrT [formControl]="mgr" placeholder="Managerial Panel">
+          <mat-option *ngFor="let u of authUsers" [value]="u">{{ u.username }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="mgr.hasError('required')">
+          <p>Please select Technical 2 Round Panel</p>
+        </mat-error>
+        <mat-hint>{{mgr.value?.email}}</mat-hint>
+    </mat-form-field><br>
+
+    <mat-form-field>
+          <mat-select (change)="addhrPanel(hrT)" #hrT [formControl]="hr" placeholder="HR Panel">
+            <mat-option *ngFor="let u of authUsers" [value]="u">{{ u.username }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="hr.hasError('required')">
+            <p>Please select Technical 2 Round Panel</p>
+          </mat-error>
+          <mat-hint>{{hr.value?.email}}</mat-hint>
+    </mat-form-field><br>
+    
+  <button [disabled]="form.invalid || hr.invalid || mgr.invalid || tech2.invalid || tech1.invalid" class="btn btn-primary btn-lg">Submit</button>
+</form>
